@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Landing page giới thiệu sản phẩm điện thoại với bố cục rõ ràng, hiện đại và responsive." />
+	<title>NAM NHAT - Nova X Landing Page</title>
+	<style>
+		:root {
+			--bg: #0f172a;
+			--bg-soft: #111c3b;
+			--panel: rgba(10, 16, 34, 0.72);
+			--text: #e5eefc;
+			--muted: #a8b5d6;
+			--line: rgba(151, 173, 219, 0.18);
+			--accent: #6ee7ff;
+			--accent-2: #ffd166;
+			--accent-3: #7cdb9f;
+			--shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+			color: var(--text);
+			background:
+				radial-gradient(circle at top left, rgba(110, 231, 255, 0.24), transparent 32%),
+				radial-gradient(circle at right 15%, rgba(255, 209, 102, 0.12), transparent 24%),
+				linear-gradient(160deg, #081023 0%, #0f1730 42%, #172553 100%);
+			padding: 24px;
+		}
+
+		body::before {
+			content: "";
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			background-image:
+				linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+			background-size: 72px 72px;
+			mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent 92%);
+		}
+
+		.page {
+			position: relative;
+			width: min(1180px, 100%);
+			margin: 0 auto;
+			z-index: 1;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		.topbar,
+		.hero,
+		.section,
+		.footer {
+			border: 1px solid var(--line);
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+			backdrop-filter: blur(18px);
+			box-shadow: var(--shadow);
+		}
+
+		.topbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+			padding: 18px 22px;
+			border-radius: 24px;
+			margin-bottom: 18px;
+		}
+
+		.brand {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.brand-mark {
+			width: 42px;
+			height: 42px;
+			border-radius: 14px;
+			display: grid;
+			place-items: center;
+			background: linear-gradient(135deg, var(--accent), #7c9bff);
+			color: #081023;
+			font-weight: 900;
+			box-shadow: 0 14px 30px rgba(110, 231, 255, 0.25);
+		}
+
+		.nav {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+
+		.nav a {
+			padding: 10px 14px;
+			border-radius: 999px;
+			color: var(--muted);
+			border: 1px solid transparent;
+			transition: 0.2s ease;
+		}
+
+		.nav a:hover,
+		.nav a:focus-visible {
+			color: var(--text);
+			border-color: var(--line);
+			background: rgba(255, 255, 255, 0.05);
+			outline: none;
+		}
+
+		.hero {
+			display: grid;
+			grid-template-columns: 1.15fr 0.85fr;
+			gap: 28px;
+			padding: 32px;
+			border-radius: 32px;
+		}
+
+		.kicker {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 8px 14px;
+			border-radius: 999px;
+			background: rgba(110, 231, 255, 0.1);
+			border: 1px solid rgba(110, 231, 255, 0.18);
+			color: var(--accent);
+			font-size: 0.9rem;
+			font-weight: 600;
+		}
+
+		.hero h1 {
+			margin: 18px 0 16px;
+			font-size: clamp(2.5rem, 5vw, 5.2rem);
+			line-height: 0.96;
+			letter-spacing: -0.05em;
+		}
+
+		.hero p {
+			margin: 0;
+			max-width: 60ch;
+			color: var(--muted);
+			line-height: 1.8;
+			font-size: 1.03rem;
+		}
+
+		.actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 14px;
+			margin-top: 26px;
+		}
+
+		.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			padding: 14px 20px;
+			border-radius: 14px;
+			font-weight: 700;
+			border: 1px solid transparent;
+			transition: 0.2s ease;
+		}
+
+		.button.primary {
+			background: linear-gradient(135deg, var(--accent), #7ca9ff);
+			color: #081023;
+		}
+
+		.button.secondary {
+			background: rgba(255, 255, 255, 0.04);
+			border-color: var(--line);
+			color: var(--text);
+		}
+
+		.button:hover,
+		.button:focus-visible {
+			transform: translateY(-1px);
+			outline: none;
+		}
+
+		.hero-badges {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 12px;
+			margin-top: 28px;
+		}
+
+		.badge {
+			padding: 14px;
+			border-radius: 18px;
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid var(--line);
+		}
+
+		.badge strong {
+			display: block;
+			font-size: 1.15rem;
+			margin-bottom: 4px;
+		}
+
+		.badge span {
+			color: var(--muted);
+			font-size: 0.92rem;
+		}
+
+		.phone-shell {
+			position: relative;
+			min-height: 560px;
+			display: grid;
+			place-items: center;
+			isolation: isolate;
+		}
+
+		.glow {
+			position: absolute;
+			inset: auto 8% 8% 8%;
+			height: 42%;
+			background: radial-gradient(circle, rgba(110, 231, 255, 0.35), transparent 68%);
+			filter: blur(12px);
+			z-index: -1;
+		}
+
+		.phone {
+			width: min(320px, 84vw);
+			aspect-ratio: 9 / 18.8;
+			padding: 14px;
+			border-radius: 38px;
+			background: linear-gradient(180deg, #0a1020, #1a2547);
+			border: 1px solid rgba(255, 255, 255, 0.14);
+			box-shadow: 0 40px 80px rgba(0, 0, 0, 0.45);
+		}
+
+		.phone-screen {
+			height: 100%;
+			border-radius: 28px;
+			padding: 18px;
+			background:
+				radial-gradient(circle at top, rgba(124, 155, 255, 0.35), transparent 40%),
+				linear-gradient(180deg, #101b39 0%, #09111f 100%);
+			display: grid;
+			grid-template-rows: auto 1fr auto;
+			gap: 14px;
+		}
+
+		.status-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 0.86rem;
+			color: rgba(229, 238, 252, 0.8);
+		}
+
+		.camera {
+			width: 86px;
+			height: 24px;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.08);
+			margin: 0 auto;
+		}
+
+		.screen-card {
+			padding: 18px;
+			border-radius: 26px;
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+			border: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.price {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 12px;
+			border-radius: 999px;
+			background: rgba(124, 219, 159, 0.12);
+			color: var(--accent-3);
+			font-weight: 700;
+			font-size: 0.92rem;
+		}
+
+		.screen-card h2 {
+			margin: 14px 0 8px;
+			font-size: 1.5rem;
+		}
+
+		.screen-card p {
+			margin: 0;
+			color: rgba(229, 238, 252, 0.84);
+			line-height: 1.6;
+		}
+
+		.screen-features {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 10px;
+		}
+
+		.feature-chip {
+			padding: 11px 12px;
+			border-radius: 16px;
+			background: rgba(255, 255, 255, 0.06);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			font-size: 0.9rem;
+			color: rgba(229, 238, 252, 0.9);
+		}
+
+		.section {
+			margin-top: 18px;
+			padding: 28px;
+			border-radius: 28px;
+		}
+
+		.section-head {
+			display: flex;
+			justify-content: space-between;
+			gap: 16px;
+			align-items: end;
+			margin-bottom: 20px;
+		}
+
+		.section-head h2,
+		.section-head h3 {
+			margin: 0;
+			font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+		}
+
+		.section-head p {
+			margin: 0;
+			max-width: 58ch;
+			color: var(--muted);
+			line-height: 1.7;
+		}
+
+		.products {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 16px;
+		}
+
+		.product {
+			padding: 20px;
+			border-radius: 24px;
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+			border: 1px solid var(--line);
+		}
+
+		.product-visual {
+			height: 220px;
+			border-radius: 20px;
+			position: relative;
+			overflow: hidden;
+			background: linear-gradient(135deg, rgba(110, 231, 255, 0.14), rgba(124, 155, 255, 0.12));
+			border: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.product-visual::before,
+		.product-visual::after {
+			content: "";
+			position: absolute;
+			border-radius: 999px;
+		}
+
+		.product-visual::before {
+			width: 130px;
+			height: 130px;
+			background: rgba(255, 255, 255, 0.12);
+			top: 24px;
+			right: 22px;
+			transform: rotate(-12deg);
+		}
+
+		.product-visual::after {
+			width: 92px;
+			height: 260px;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 28px;
+			border: 12px solid rgba(255, 255, 255, 0.9);
+			background: linear-gradient(180deg, #18284f, #0b1020);
+			box-shadow: 0 28px 30px rgba(0, 0, 0, 0.24);
+		}
+
+		.product h3 {
+			margin: 16px 0 8px;
+			font-size: 1.28rem;
+		}
+
+		.product p {
+			margin: 0;
+			color: var(--muted);
+			line-height: 1.7;
+		}
+
+		.spec-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 16px;
+		}
+
+		.spec {
+			padding: 18px;
+			border-radius: 20px;
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid var(--line);
+		}
+
+		.spec strong {
+			display: block;
+			font-size: 1rem;
+			margin-bottom: 6px;
+		}
+
+		.spec span {
+			color: var(--muted);
+			line-height: 1.6;
+		}
+
+		.footer {
+			margin: 18px 0 4px;
+			padding: 20px 24px;
+			border-radius: 22px;
+			display: flex;
+			justify-content: space-between;
+			gap: 16px;
+			align-items: center;
+			color: var(--muted);
+		}
+
+		.footer strong {
+			color: var(--text);
+		}
+
+		@media (max-width: 980px) {
+			.hero,
+			.products,
+			.spec-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.hero-badges {
+				grid-template-columns: 1fr;
+			}
+
+			.section-head,
+			.footer,
+			.topbar {
+				flex-direction: column;
+				align-items: start;
+			}
+
+			.phone-shell {
+				min-height: auto;
+			}
+		}
+
+		@media (max-width: 640px) {
+			body {
+				padding: 16px;
+			}
+
+			.topbar,
+			.hero,
+			.section,
+			.footer {
+				border-radius: 22px;
+			}
+
+			.hero,
+			.section {
+				padding: 22px;
+			}
+
+			.nav {
+				gap: 6px;
+			}
+
+			.nav a {
+				padding: 8px 10px;
+				font-size: 0.92rem;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="page">
+		<header class="topbar">
+			<div class="brand">
+				<div class="brand-mark">N</div>
+				<div>
+					<div>NAM NHAT</div>
+					<small style="color: var(--muted); font-weight: 500; letter-spacing: 0.02em; text-transform: none;">Nova X Landing Page</small>
+				</div>
+			</div>
+			<nav class="nav" aria-label="Điều hướng chính">
+				<a href="#sanpham">Sản phẩm</a>
+				<a href="#tinh-nang">Tính năng</a>
+				<a href="#thong-so">Thông số</a>
+				<a href="#lien-he">Liên hệ</a>
+			</nav>
+		</header>
+
+		<section class="hero" aria-labelledby="hero-title">
+			<div>
+				<div class="kicker">Smartphone 2026 · Thiết kế cho demo landing page</div>
+				<h1 id="hero-title">Nova X.<br />Mẫu điện thoại nổi bật ngay từ cái nhìn đầu tiên.</h1>
+				<p>
+					Trang giới thiệu được xây dựng gọn, sạch và dễ chấm điểm với đầy đủ header, banner, khu vực sản phẩm và footer.
+					Bố cục ưu tiên desktop nhưng vẫn tự co giãn tốt trên màn hình nhỏ.
+				</p>
+				<div class="actions">
+					<a class="button primary" href="#sanpham">Xem sản phẩm</a>
+					<a class="button secondary" href="#lien-he">Tải bản mẫu</a>
+				</div>
+				<div class="hero-badges" aria-label="Tóm tắt nhanh">
+					<div class="badge">
+						<strong>120Hz</strong>
+						<span>Mượt mà cho thao tác và cuộn trang.</span>
+					</div>
+					<div class="badge">
+						<strong>50MP</strong>
+						<span>Camera chi tiết cho ảnh nổi bật hơn.</span>
+					</div>
+					<div class="badge">
+						<strong>2 ngày</strong>
+						<span>Pin đủ cho học tập và sử dụng hàng ngày.</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="phone-shell" aria-hidden="true">
+				<div class="glow"></div>
+				<div class="phone">
+					<div class="phone-screen">
+						<div class="status-row">
+							<span>09:41</span>
+							<div class="camera"></div>
+							<span>100%</span>
+						</div>
+						<div class="screen-card">
+							<div class="price">Giá từ 12.990.000đ</div>
+							<h2>Nova X Pro</h2>
+							<p>Thiết kế khung kim loại, màn hình tràn viền và cụm camera cân đối cho một bản demo hiện đại.</p>
+						</div>
+						<div class="screen-features">
+							<div class="feature-chip">Màn hình OLED</div>
+							<div class="feature-chip">Sạc nhanh 45W</div>
+							<div class="feature-chip">Chip A-series</div>
+							<div class="feature-chip">Kháng nước IP68</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="sanpham">
+			<div class="section-head">
+				<div>
+					<h2>Sản phẩm nổi bật</h2>
+					<p>Ba phiên bản được trình bày rõ ràng để người xem nhanh chóng hiểu điểm khác nhau và cảm nhận được cấu trúc landing page.</p>
+				</div>
+				<a class="button secondary" href="#lien-he">Nhận tư vấn</a>
+			</div>
+
+			<div class="products">
+				<article class="product">
+					<div class="product-visual"></div>
+					<h3>Nova X Lite</h3>
+					<p>Phiên bản cân bằng giữa giá và trải nghiệm, phù hợp cho người dùng phổ thông và bài tập trình bày sản phẩm.</p>
+				</article>
+				<article class="product">
+					<div class="product-visual"></div>
+					<h3>Nova X</h3>
+					<p>Mẫu chính của chiến dịch với màn hình đẹp, pin lâu và phối màu cao cấp cho phần banner trung tâm.</p>
+				</article>
+				<article class="product">
+					<div class="product-visual"></div>
+					<h3>Nova X Pro</h3>
+					<p>Phiên bản nổi bật nhất, nhấn mạnh camera và hiệu năng để tạo cảm giác hoàn chỉnh cho landing page.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="section" id="tinh-nang">
+			<div class="section-head">
+				<div>
+					<h2>Tính năng chính</h2>
+					<p>Các khối thông tin ngắn giúp trang có nhịp đọc tốt, dễ chấm và dễ chỉnh sửa nếu nhóm cần ghép thêm nội dung.</p>
+				</div>
+			</div>
+
+			<div class="spec-grid">
+				<div class="spec">
+					<strong>Thiết kế tối giản</strong>
+					<span>Tông màu đậm, hiệu ứng kính mờ và khoảng trắng hợp lý giúp trang nhìn hiện đại trên desktop.</span>
+				</div>
+				<div class="spec">
+					<strong>Responsive rõ ràng</strong>
+					<span>Hero chuyển từ hai cột sang một cột trên màn hình nhỏ để tránh vỡ layout.</span>
+				</div>
+				<div class="spec">
+					<strong>HTML/CSS sạch</strong>
+					<span>Cấu trúc được chia thành header, hero, section và footer với class name dễ hiểu.</span>
+				</div>
+				<div class="spec">
+					<strong>Phù hợp GitHub Pages</strong>
+					<span>Chỉ cần một file HTML duy nhất nên rất thuận tiện để đẩy lên repo và chia sẻ.</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="thong-so">
+			<div class="section-head">
+				<div>
+					<h2>Thông số nổi bật</h2>
+					<p>Phần này giữ đúng tinh thần giới thiệu sản phẩm: ngắn, cụ thể, dễ đọc và không làm rối bố cục chính.</p>
+				</div>
+			</div>
+
+			<div class="spec-grid">
+				<div class="spec"><strong>Màn hình</strong><span>6.7" OLED, 120Hz, độ sáng cao cho hiển thị rõ trong nhiều môi trường.</span></div>
+				<div class="spec"><strong>Hiệu năng</strong><span>Chip thế hệ mới hỗ trợ đa nhiệm, game nhẹ và trình diễn giao diện mượt.</span></div>
+				<div class="spec"><strong>Camera</strong><span>Hệ thống 50MP với chế độ chân dung, ban đêm và quay video ổn định.</span></div>
+				<div class="spec"><strong>Pin</strong><span>Viên pin lớn, sạc nhanh 45W, hướng đến dùng cả ngày cho học tập và làm việc.</span></div>
+			</div>
+		</section>
+
+		<footer class="footer" id="lien-he">
+			<div>
+				<strong>NAM NHAT · Landing Page</strong><br />
+				<span>Thiết kế để nộp bài, chia sẻ repo và chỉnh sửa tiếp nếu nhóm cần hoàn thiện thêm.</span>
+			</div>
+			<div>
+				<span>Email: demo@nova-x.vn</span><br />
+				<span>GitHub Pages: sẵn sàng deploy</span>
+			</div>
+		</footer>
+	</main>
+</body>
+</html>
